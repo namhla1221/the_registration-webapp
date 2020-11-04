@@ -1,0 +1,66 @@
+<div class="container">
+<header>
+  <h1>Registration Numbers App</h1>
+</header>
+
+<div class="row">
+  <div class="twelve columns">
+    <div class="heading">
+
+    </div>
+    <form action="/reg_number" method="post">
+    <div class="box">
+      <label for="">Registration Number:</label>
+
+      <input type="text" name="enteredReg" class="EnterReg"  pattern="[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,8}"  placeholder="Enter registration Number" required title="please make sure you enter registration number">
+      <button type="submit" class="AddReg">Add</button>
+        {{#if messages.info }}
+      <div class="messageDisplay">
+        <h6>{{messages.info}}</h6>
+      </div>
+      {{/if}}
+         {{#if messages.error }}
+      <div class="messageDisplay DisplayError">
+        <h6>{{messages.error}}</h6>
+      </div>
+      {{/if}}
+    </div>
+
+    <div class="box">
+      <label for="">Select Town:</label>
+      <div class="selectedTown">
+        <select  onchange="selectTown()" name="townName" class="townName" >
+          <option value="All" >AllTown</option>
+           {{#each filterbyTown}}
+            <option value="{{town_tag}}" {{selectedTag}} >{{town_name}}</option>
+           {{/each}}
+        </select>
+        <div>
+        </div>
+     <a href="/reset"><button type="button" class="clearBtn">clear</button></a>
+      </div>
+        </form>
+    </div>
+    <div class=" fitbox">
+          {{#each reglist}}
+          <li>
+              {{reg_number}}
+              {{filterbyTown}}
+              </li>
+              {{/each}}
+    </div>
+
+  </div>
+</div>
+  
+</div>
+
+<script src="../control.js"></script>
+
+<script>
+function selectTown(){
+    var tag = document.querySelector(".townName");
+    var select ="selected";
+   location.href = '/filter/' + tag.value;
+}
+</script>
