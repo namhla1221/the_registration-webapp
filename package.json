@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "directories": {
-    "test": "mocha",
-    "start": "node index.js"
+    "test": "mocha"
+    
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -19,7 +19,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
