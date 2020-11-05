@@ -29,7 +29,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:c
 
 const pool = new Pool({
     connectionString,
-    // ssl: useSSL
+    ssl: useSSL
 });
 
 const registration_numbers = Registration(pool);
