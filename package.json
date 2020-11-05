@@ -1,0 +1,30 @@
+{
+  "name": "registration_numbers_webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-flash": "^0.0.2",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "nodemon": "^2.0.6",
+    "pg": "^8.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "Mocha",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namhla1221/the_registration-webapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namhla1221/the_registration-webapp/issues"
+  },
+  "homepage": "https://github.com/namhla1221/the_registration-webapp#readme"
+}
