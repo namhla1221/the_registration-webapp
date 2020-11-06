@@ -5,7 +5,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const Registration = require('./factoryReg');
-const _ = require("lodash");
+const regApp = require("./routes");
 
 const app = express();
 
@@ -36,6 +36,7 @@ const pool = new Pool({
 
 
 const registration_numbers = Registration(pool);
+const routeInst  = regApp(registration_numbers)
 
 app.use(express.static('public'));
 
@@ -57,90 +58,19 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-app.get("/", async function (req, res, next) {
-//The try statement allows you to define a block of code to be tested for errors while it is being executed.
-    try {
-        let reglist = await registration_numbers.getMap();
-        let filterbyTown = await registration_numbers.getTags();
-        res.render('reg_number', { reglist, filterbyTown });
-    }
-    //The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
-    catch (err) {
-        next(err);
-    }
-
-});
+app.get("/", routeInst.home)
 
 
-app.post("/reg_number", async function (req, res, next) {
-    var numberPlate = req.body.enteredReg;
-   var regPlate =  numberPlate.toUpperCase()
-   console.log(regPlate)
-    //The try statement allows you to define a block of code to be tested for errors while it is being executed.
-    try {
-         let found = await registration_numbers.setRegistration(numberPlate);
-        if (found) {
-            await registration_numbers.getMap();
-            req.flash('info', "registration is succesfully added");
-        }else{
-            let map = await registration_numbers.getMap();
-            let findArray =[]
-            for (let i = 0; i < map.length; i++) {
-                findArray.push(map[i].reg_number)   
-            }
-            findArray.indexOf(numberPlate) !=-1 ?  req.flash('error', "registration numbers already exist") : req.flash('error', "incorrect registration number");
-        }
-        res.redirect('/');
-    } 
-    //The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
-    catch (err) {
-        next(err);
-    }
-});
-
-app.get("/reg_number/:numberPlate", async function (req, res, next) {
-    try {
-        let numberPlate = req.params.numberPlate;
-        let found = await registration_numbers.setRegistration(numberPlate);
-        if (found) {
-        await registration_numbers.getMap();
-        req.flash('info', "registration is succesfully added");
-        
-        }else{
-            let map = await registration_numbers.getMap;
-           map.indexOf(req.params.numberPlate) !=-1 ?  req.flash('error', "registration numbers already exist") : req.flash('error', "incorrect registration number")  ;
-        }
-        res.redirect('/');
-       
-
-    } catch (err) {
-    
-        next(err);
-    }
-});
+app.post("/reg_number", routeInst.enter)
 
 
-app.get('/filter/:tag', async function (req, res, next) {
-    try {
-        let city = req.params.tag;
-        let reglist = await registration_numbers.filterTowns(city);
-        let filterbyTown = await registration_numbers.getTags(city);
-
-        res.render('reg_number', { reglist, filterbyTown });
-    } catch (err) {
-        next(err);
-    }
-});
+app.get("/reg_number/:numberPlate", routeInst.message)
 
 
-app.get('/reset', async function (req, res, next) {
-    try {
-        await registration_numbers.clear();
-        res.redirect("/");
-    } catch (err) {
-        next(err)
-    }
-});
+app.get('/filter/:tag', routeInst.filterBy)
+
+
+app.get('/reset', routeInst.clearButton)
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function (err) {
