@@ -17,7 +17,7 @@
     "package.json": "^2.0.1",
     "pg": "^8.4.2"
   },
-  "devDependencies": {},
+  "devDependencies": {"mocha":"^8.2.1"},
   "scripts": {
     "test": "mocha",
     "start": "node index.js"
