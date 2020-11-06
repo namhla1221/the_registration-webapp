@@ -5,13 +5,13 @@
   "main": "index.js",
   "directories": {
     "test": "test"
-    
   },
   "dependencies": {
     "express": "^4.17.1",
     "express-flash": "^0.0.2",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "package-json": "^6.5.0",
     "package.json": "^2.0.1",
