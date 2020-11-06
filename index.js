@@ -5,6 +5,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const Registration = require('./factoryReg');
+const _ = require("lodash");
 
 const app = express();
 
@@ -32,7 +33,7 @@ const pool = new Pool({
     // ssl: useSSL
 });
 
-const _ = require("lodash");
+
 
 const registration_numbers = Registration(pool);
 
@@ -72,7 +73,9 @@ app.get("/", async function (req, res, next) {
 
 
 app.post("/reg_number", async function (req, res, next) {
-    var numberPlate = _.upperCase(req.body.enteredReg);
+    var numberPlate = req.body.enteredReg;
+   var regPlate =  numberPlate.toUpperCase()
+   console.log(regPlate)
     //The try statement allows you to define a block of code to be tested for errors while it is being executed.
     try {
          let found = await registration_numbers.setRegistration(numberPlate);
