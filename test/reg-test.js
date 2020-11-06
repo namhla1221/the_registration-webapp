@@ -12,7 +12,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:c
 
 const pool = new Pool({
     connectionString,
-    ssl: useSSL
+    // ssl: useSSL
 });
 const Registration = require('../factoryReg');
 //Here am testing if the user entered the regnumber and then it must display the reg.
