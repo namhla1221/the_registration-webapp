@@ -6,7 +6,7 @@
   /* body{
     background-color:  #ddd;
   } */
-  .box {
+  /* .box {
     padding: 0.75em;
     border: 1px solid #ddd;
     background-color: lightcoral;
@@ -16,15 +16,14 @@
     margin-bottom: 2em;
     text-align: center;
     
-    
-  }
+  } */
   div {
-    background-color: lightcoral;
+    background-color: grey;
     text-align: center;
   }
   
   header {
-    background-color:lightcoral;
+    background-color:grey;
     width: 100%;
   }
   h1{
@@ -54,7 +53,7 @@
   }
   
   .box input[type="text"] {
-    width: 70%;
+    width: 30%;
     padding: 12px 8px;
     border: none;
     font-size: 14px;
@@ -66,7 +65,7 @@
   .AddReg, .AddRegTwo {
     width: 12%;
     height: 5%;
-    background-color:grey;
+    background-color: coral;
     color: white;
     /* padding: 12px 12px; */
     margin: 8px 0;
@@ -80,7 +79,7 @@
   }
   
   .townName, .townNameTwo {
-    width: 100%;
+    width: 30%;
     height: 40px;
     color: blue;
     font: 2rem ;
@@ -132,28 +131,25 @@
   }
   .fitbox {
     display: inline-block;
-    /* padding: 0.75em; */
+    padding: 0.75em;
     /* border: 1px solid #ddd; */
-    background-color: lightcoral;
+    background-color: grey;
     /* box-shadow: 2px 3px 3px #ddd; */
-     width: 80%;
-     height: 20%;
-     /* min-height:20%; 
-     margin-bottom: 2em; 
-    margin-left: 1rem;
-    margin-right: 1rem; */
+     
+      
+     margin-bottom: 9em; 
+    
   }
    li {
     text-align: center;
     float: left;
-    background-color: grey;
+    background-color:yellow;
     border-radius: 10px;
     height: 30px;
     width: 25px;
     border: 3px solid #000;
-     margin-bottom: 16px; 
-    margin-left: 0rem;
-     overflow: hidden; 
+   align-content: center;
+    
    
   }
   
@@ -172,16 +168,8 @@
   }
   
   
-  @media screen  and (min-width: 360px){
   
-    .box {
-      height: auto;
-      width: 50%;
-      /* margin-bottom: 2em;
-      margin-left:0; */
-      align-self: center;
-   
-    }
+    
     .fitbox{
       margin-left: 0;
     }
@@ -212,4 +200,3 @@
     
     margin :0 auto;
   }
-}
